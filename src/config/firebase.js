@@ -4,12 +4,12 @@ import { getAuth } from 'firebase/auth';
 
 // Konfigurasi Firebase Anda
 const firebaseConfig = {
-  apiKey: "AIzaSyApjRYnGUZdxI-aaOASbGPZaQ5YlEYHWRU",
-  authDomain: "laundryapp-b5dd4.firebaseapp.com",
-  projectId: "laundryapp-b5dd4",
-  storageBucket: "laundryapp-b5dd4.firebasestorage.app",
-  messagingSenderId: "579911471425",
-  appId: "1:579911471425:web:80d58aec95feaf27c4d1c0"
+  apiKey:"AIzaSyBYnGuAfnXnEzlzVvNUczcoBstasNU1tqU",
+  authDomain: "laundryapp-45989.firebaseapp.com",
+  projectId:"laundryapp-45989",
+  storageBucket: "laundryapp-45989.firebasestorage.app",
+  messagingSenderId: "743423071263",
+  appId:  "1:743423071263:web:c9219efe529e862ecaf12a",
 };
 
 // Inisialisasi Firebase

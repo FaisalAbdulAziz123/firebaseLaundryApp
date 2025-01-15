@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
+import { signInWithEmailAndPassword } from "firebase/auth"; // Import fungsi autentikasi
+import { auth } from "../config/firebase"; // Import konfigurasi Firebase
 
 
 export default function LoginScreen({ navigation }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    // Logika autentikasi (API call bisa ditambahkan di sini)
-    console.log('Email:', email, 'Password:', password);
-    navigation.replace('Main'); // Pindah ke halaman utama setelah login
+  const handleLogin = async () => {
+    try {
+      // Fungsi login menggunakan Firebase Authentication
+      await signInWithEmailAndPassword(auth, email, password);
+      Alert.alert("Login berhasil!");
+      navigation.replace("HomeScreen"); // Pindah ke halaman utama setelah login berhasil
+    } catch (error) {
+      // Menampilkan pesan error jika login gagal
+      Alert.alert("Login gagal!", error.message);
+    }
   };
 
   return (
@@ -30,7 +38,7 @@ export default function LoginScreen({ navigation }) {
         onChangeText={setPassword}
       />
       <Button title="Login" onPress={handleLogin} />
-      <Text style={styles.link} onPress={() => navigation.navigate('Register')}>
+      <Text style={styles.link} onPress={() => navigation.navigate("Register")}>
         Belum punya akun? Daftar
       </Text>
     </View>
@@ -40,26 +48,26 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 8,
     padding: 10,
     marginBottom: 15,
   },
   link: {
-    color: '#1e90ff',
-    textAlign: 'center',
+    color: "#1e90ff",
+    textAlign: "center",
     marginTop: 10,
   },
 });
